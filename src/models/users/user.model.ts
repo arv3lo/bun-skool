@@ -3,8 +3,8 @@ import Joi from "joi";
 // import { jwt } from '@elysiajs/jwt'
 
 // import configs from "../configs";
-import { History } from "./historique";
-import { EUserGenre, EUserRole } from "../common/enums/common";
+import { History } from "../history/history.model";
+import { EUserGenre, EUserRole } from "../../common/enums/common";
 
 const userSchema = new mongoose.Schema(
   {
@@ -84,12 +84,13 @@ export const validateUser = (user: TUser) => {
   const schema = Joi.object({
     firstname: Joi.string().min(3).max(25),
     lastname: Joi.string().min(3).max(25),
-    username: Joi.string().min(5).max(15),
-    password: Joi.string().alphanum().min(8).max(50),
+    birthDate: Joi.date(),
     sexe: Joi.string(),
-    // .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
-    image: Joi.array().items(Joi.string()),
+    email: Joi.string(),
+    password: Joi.string().alphanum().min(8).max(50),
+    matricule: Joi.string(),
     role: Joi.string(),
+    isActive: Joi.boolean(),
     deleted: Joi.boolean(),
   });
 
