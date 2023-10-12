@@ -1,17 +1,20 @@
+import { EServerErrors } from "../../common/enums/errors";
 import { IPaginationParams } from "../../common/interfaces/common";
+import { CustomError } from "../../common/utils/customError";
 import { TUser } from "./user.model";
+import userRepository from "./user.repository";
 
-const getUsers = (params: IPaginationParams) => {
+const list = async (params: IPaginationParams) => {
   // call getUsers from userRepository
-  // ...
+  const users = await userRepository.getUsers(params);
   // if error return Error (not found || invalid)
-  // ...
+  if (!users) throw new CustomError(EServerErrors.NOT_FOUND);
   // else return userList
-  // ...
+  return users;
 };
 
-const getOneUser = (userID: string) => {
-  // call getOneUser from userRepository
+const getOne = (userID: string) => {
+  // call getOne from userRepository
   // ...
   // if error return Error (not found || invalid)
   // ...
@@ -19,7 +22,7 @@ const getOneUser = (userID: string) => {
   // ...
 };
 
-const createUser = (user: TUser) => {
+const createOne = (user: TUser) => {
   // call createOneUser from userRepository
   // ...
   // create user creation history
@@ -30,7 +33,7 @@ const createUser = (user: TUser) => {
   // ...
 };
 
-const updateUser = (userID: string, user: TUser) => {
+const updateOne = (userID: string, user: TUser) => {
   // call updateOneUser from userRepository
   // ...
   // create user update history
@@ -41,7 +44,7 @@ const updateUser = (userID: string, user: TUser) => {
   // ...
 };
 
-const deleteUser = (userID: string) => {
+const deleteOne = (userID: string) => {
   // call deleteOneUser from userRepository
   // ...
   // create user delete history
@@ -52,7 +55,7 @@ const deleteUser = (userID: string) => {
   // ...
 };
 
-const searchUser = (searchText: string) => {
+const find = (searchText: string) => {
   // call findUser from userRepository
   // ...
   // create user search history
@@ -63,4 +66,4 @@ const searchUser = (searchText: string) => {
   // ...
 };
 
-export { getUsers, getOneUser, createUser, updateUser, deleteUser, searchUser };
+export default { list, getOne, createOne, updateOne, deleteOne, find };

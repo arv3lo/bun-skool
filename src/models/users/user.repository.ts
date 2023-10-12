@@ -34,4 +34,4 @@ const updateUser = async (id: string, user: TUser) =>
 const deleteUser = async (id: string) =>
   await User.findByIdAndUpdate(id, { deleted: true }, { new: true });
 
-export { getUsers, getOneUser, createUser, updateUser, deleteUser };
+export default { getUsers, getOneUser, createUser, updateUser, deleteUser };
