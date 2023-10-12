@@ -1,5 +1,14 @@
 import * as mongoose from "mongoose";
+import configs from ".";
 
-const DB_URL = process.env.DB_URL || "mongodb://localhost:27017/mongoose-app";
+const DB_URL = configs.db;
 
-await mongoose.connect(DB_URL);
+const initDB = (): void => {
+  mongoose.connect(DB_URL);
+
+  mongoose.connection.on("error", () => {
+    throw new Error(`Unable to connect to database ${DB_URL}`);
+  });
+};
+
+export default initDB;
