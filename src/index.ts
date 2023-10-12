@@ -10,5 +10,5 @@ initDB();
 app.listen(configs.port);
 
 console.log(
-  `🦊 Elysia is running at http://${app.server?.hostname}:${app.server?.port} ...`
+  `🦊 App is running at http://${app.server?.hostname}:${app.server?.port} ...`
 );

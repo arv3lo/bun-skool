@@ -1,15 +1,16 @@
 export enum EUserRole {
-  ADMIN = "admin",
-  STUDENT = "student",
-  PROFESSOR = "professor",
   DIRECTOR = "director",
+  ADMIN = "admin",
+  PROFESSOR = "professor",
   PARENT = "parent",
+  TUTOR = "tutor",
+  STUDENT = "student",
 }
 
 export enum EUserGenre {
   MALE = "male",
   FEMALE = "female",
-  OTHER = "other"
+  OTHER = "other",
 }
 
 export enum EHistoryType {

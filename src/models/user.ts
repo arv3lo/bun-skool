@@ -1,9 +1,9 @@
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 import Joi from "joi";
 // import { jwt } from '@elysiajs/jwt'
 
 // import configs from "../configs";
-import Hist
+import { History } from "./historique";
 import { EUserGenre, EUserRole } from "../common/enums/common";
 
 const userSchema = new mongoose.Schema(
@@ -21,6 +21,17 @@ const userSchema = new mongoose.Schema(
     email: String,
     password: String,
     matricule: String,
+    role: {
+      type: String,
+      enum: [
+        EUserRole.DIRECTOR,
+        EUserRole.ADMIN,
+        EUserRole.PROFESSOR,
+        EUserRole.PARENT,
+        EUserRole.TUTOR,
+        EUserRole.STUDENT,
+      ],
+    },
 
     isActive: { type: Boolean, default: false },
     deleted: { type: Boolean, default: false },
@@ -35,7 +46,7 @@ const userSchema = new mongoose.Schema(
         // generate history for each user activity
         // get user information directly from here
 
-        let histo = new Historique({
+        let histo = new History({
           description: desc,
           user: this._id,
           type: type,
